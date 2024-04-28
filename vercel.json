@@ -1,12 +1,11 @@
 {
     
-        "version": 2,
-        "builds": [{ "src": "bin/www.js", "use": "@vercel/node" }], 
-        
-        
-        "routes": [
-          { "src": "/(.*)", "dest": "bin/www.js" }
-        ]  ,
+  "version": 2,
+  "builds": [{ "src": "app.js", "use": "@vercel/node" }], 
+         
+  "routes": [
+    { "src": "/(.*)", "dest": "app.js" }
+  ],  
     "env": {
         "DATABASE_URL": "mongodb+srv://shaheer:92NHxUOtie7fNwla@shaheersdatabase.irkcohe.mongodb.net/?retryWrites=true&w=majority&appName=shaheersdatabase"
         ,

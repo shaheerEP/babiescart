@@ -1,6 +1,7 @@
-   <header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand pl-3" href="/">Shopping Cart </a>
+<header>
+<nav class="navbar navbar-expand-lg user-header">
+     <img src="https://i.imgur.com/wUQHzk9.png" alt="Your company logo" class="admin-logo"> 
+  <a class="navbar-brand user-brand" href="/">Shopping Cart </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,46 +9,44 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Products <span class="sr-only">(current)</span></a>
+        <a class="nav-link user-nav-link" href="/">Products <span class="sr-only">(current)</span></a>
       </li>
       {{#if user}}
       <li class="nav-item">
-        <a class="nav-link" href="/orders">Oders</a>
+        <a class="nav-link user-nav-link" href="/orders">Orders</a>
       </li>
       {{/if}}
       <li class="nav-item">
-      <a class="nav-link" href="/cart">Cart{{#if user}}<span id="cart-badge" class="badge badge-success">{{totalQuantity}}</span>{{/if}}</a>
+        <a class="nav-link user-nav-link" href="/cart">Cart{{#if user}}<span id="cart-badge" class="badge">{{totalQuantity}}</span>{{/if}}</a>
+      </li>     </ul>
 
-
-      </li>
-      
-        
-      
-    </ul>
    <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-secondary dropdown-toggle user-dropdown-toggle:focus user-dropdown-toggle.clicked user-dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
    {{#if user}}
    {{user.name}}
    {{else}}
-   Acoount
+   Account
    {{/if}}
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  <div class="dropdown-menu user-dropdown-menu" aria-labelledby="dropdownMenuButton">
 {{#if user}}
-   <a class="dropdown-item" href="/logout">Logout</a>
+   <a class="dropdown-item user-dropdown-link" href="/logout">Logout</a>
    {{else}}
-   <a class="dropdown-item" href="/login">Login</a>
-  <a class="dropdown-item" href="/signup">Signup</a>
+   <a class="dropdown-item user-dropdown-link" href="/login">Login</a>
+  <a class="dropdown-item user-dropdown-link" href="/signup">Signup</a>
    {{/if}}
-
-
-   
-  
-    
-  
   </div>
 </div>
   </div>
 </nav>
+</header>
+<script>
+document.addEventListener('DOMContentLoaded', function() { 
+    const accountButton = document.querySelector('.navbar .user-dropdown-toggle');
 
-    </header>
+    accountButton.addEventListener('click', function() {
+        this.classList.add('clicked'); 
+    });
+});
+
+</script>

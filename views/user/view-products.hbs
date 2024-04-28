@@ -1,27 +1,25 @@
+<section class="babycart-container ml-5 mr-5 mt-5"> 
+    <div class="row"> 
+        {{#each allproducts}}   
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-3"> 
+                <div class="babycart-card">
+                  <img src="/product-images/{{this.image}}" class="babycart-card-img-top" alt="Card image cap" style="height: 200px; object-fit: contain;"> 
+                    <div class="card-body">
+                        <h5 class="babycart-product-title"> {{this.name}} </h5>
+                         <p class="babycart-product-description"> {{this.description}} </p>
+                         <button onclick="addToCart('{{this._id}}')" class="babycart-btn">
+  <i class="fas fa-shopping-cart"></i> Add to cart 
+</button>
 
-<section class="ml-5 mr-5 mt-5">
-   <div class="row">
-    {{#each allproducts}}
-   
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-3">
-     <div class="card ">
-        <img src="/product-images/{{this.image}}" class="card-img-top" alt="Card image cap" style="height: 200px; object-fit: contain;">
-       <div class="card-body">
-        <h5 class="card-title"> {{this.name}} </h5>
-        <p class="card-text"> {{this.description}} </p>
-        <button onclick="addToCart('{{this._id}}')" class="btn btn-primary">Add to cart</button>
-
-
-        <span class="text-muted ml-3">₹<span class="price">{{this.price}}</span></span>
-      
-       </div>
-     </div>
-    </div>
-    {{/each}}
-    
-     </div>
-    
+                         <span class="text-muted ml-3">₹<span class="price">{{this.price}}</span></span>
+                    </div>
+                </div> 
+            </div>
+        {{/each}} 
+    </div> 
 </section>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
 <script>
 var $j = jQuery.noConflict();

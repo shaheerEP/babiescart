@@ -1,48 +1,49 @@
 <section>
   <div class="container">
     {{#if products.length}}
-  <table class="table mt-5">
+    <table class="table mt-5 responsive-table">
     <thead>
-      <tr>
-        <th scope="col">Item</th>
-        <th scope="col">Title</th>
+        <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Title</th>
             <th scope="col">Price</th>
-        <th scope="col">Quantity</th>
-      </tr>
+            <th scope="col">Quantity</th>
+         </tr>
     </thead>
     <tbody>
-      {{#each products}}
-      <tr id="product-row-{{this._id}}">
-        <td>
-          <img style="width: 70px; height:70px;" src="/product-images/{{this.image}}">
-        </td>
-        <td>{{this.name}}</td>
-        <td>₹{{this.price}}</td>
-        <td>
-          <button class="cart-item-count mr-3 btn btn-info" data-action="decrease" data-id="{{this._id}}">-</button>
-          <span id="quantity-{{this._id}}">{{this.quantity}}</span>
-          <button class="cart-item-count ml-3 btn btn-info" data-action="increase" data-id="{{this._id}}">+</button>
-        </td>
-        <td>
-          <a href="#" class="btn btn-danger remove-item" data-id="{{this._id}}">Remove</a>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-  <hr>
-  <h3 class="float-right" id="total-amount">Total Amount: ₹ {{totalAmount}}</h3>
-  <br><br>
-  <a href="/place-order" class="btn btn-success float-right" >Place order</a>
-{{else}}
-  <div >
-    <h2 >Your cart is empty!</h2>
-    <p>Looks like you haven't added any products yet. Start shopping to fill it up!</p>
-  </div>
-{{/if}}
+         {{#each products}}
+         <tr id="product-row-{{this._id}}"> 
+             <td>
+                 <img src="/product-images/{{this.image}}">
+             </td>
+             <td>{{this.name}}</td>
+             <td>₹{{this.price}}</td>
+             <td>
+                 <button class="cart-item-count mr-3" data-action="decrease" data-id="{{this._id}}">-</button>
+                 <span id="quantity-{{this._id}}">{{this.quantity}}</span>
+                 <button class="cart-item-count ml-3" data-action="increase" data-id="{{this._id}}">+</button>
+             </td>
+             <td>
+                 <a href="#" class="remove-btn" data-id="{{this._id}}">Remove</a> 
+             </td>
+         </tr>
+         {{/each}}
+     </tbody>
+ </table>
 
+    <hr>
+    <h3 class="float-right" id="total-amount">Total Amount: ₹ {{totalAmount}}</h3>
+    <br><br>
+    <a href="/place-order" class="btn-success float-right">Place order</a>
+    {{else}}
+    <div>
+      <h2>Your cart is empty!</h2>
+      <p>Looks like you haven't added any products yet. Start shopping to fill it up!</p>
+    </div>
+    {{/if}}
   </div>
 </section>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
