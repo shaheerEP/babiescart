@@ -17,7 +17,8 @@ var app = express();
 var fileUpload=require('express-fileupload')
 const connection = require('./config/connection');
 var session = require('express-session');
-const MongoDBStore = require('connect-mongo'); 
+const MongoDBStore = require('connect-mongodb-session')(session);
+const mongoose = require('mongoose');
 
 var userHelpers = require('./helpers/user-helpers');
 const helpers = require('./config/handlebars-helpers');
@@ -46,7 +47,7 @@ app.use(fileUpload());
 
 app.use(session({
   store: new MongoDBStore({
-    mongoUrl: process.env.DATABASE_URL, 
+    Url: process.env.DATABASE_URL, 
     collection: 'sessions' 
   }),
   secret: process.env.SESSION_SECRET,
