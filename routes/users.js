@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const router = express.Router();
 const userHelpers = require('../helpers/user-helpers');
-const {Order,User} = require('../helpers/schema') 
+const {Order,User} = require('../helpers/schema')  
  
 // let User; 
 // try {
@@ -16,7 +16,7 @@ const {Order,User} = require('../helpers/schema')
 //     email: String,
 //     password: String
 //   }));
-// }
+
 
 const verifyLoggin = (req,res,next)=> {
   
@@ -84,7 +84,7 @@ router.post('/signup', async (req, res) => {
       };
       
      req.session.userLoggedin = true;
-      // Then redirect to '/'
+    
       res.redirect('/');
   } catch (error) {
       res.status(500).send({ message: 'An error occurred' });
