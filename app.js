@@ -17,6 +17,8 @@ var app = express();
 var fileUpload=require('express-fileupload')
 const connection = require('./config/connection');
 var session = require('express-session')
+const RedisStore = require('connect-redis')(session);
+const redisStore = new RedisStore({ client: redisClient });
 var userHelpers = require('./helpers/user-helpers');
 const helpers = require('./config/handlebars-helpers');
 const Razorpay = require('razorpay');
@@ -42,7 +44,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
-app.use(session({secret:'key',
+app.use(session({
+store:  redisStore,
+secret:process.env.SESSION_SECRET,
 resave: false,
 saveUninitialized: true,
 cookie:{maxAge:60000000}}))
