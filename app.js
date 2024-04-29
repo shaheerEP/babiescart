@@ -16,9 +16,9 @@ var adminRouter = require('./routes/admin');
 var app = express();
 var fileUpload=require('express-fileupload')
 const connection = require('./config/connection');
-var session = require('express-session')
-const RedisStore = require('connect-redis')(session);
-const redisStore = new RedisStore({ client: redisClient });
+var session = require('express-session');
+const MongoDBStore = require('connect-mongo'); 
+
 var userHelpers = require('./helpers/user-helpers');
 const helpers = require('./config/handlebars-helpers');
 const Razorpay = require('razorpay');
@@ -45,11 +45,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
 app.use(session({
-store:  redisStore,
-secret:process.env.SESSION_SECRET,
-resave: false,
-saveUninitialized: true,
-cookie:{maxAge:60000000}}))
+  store: new MongoDBStore({
+    mongoUrl: process.env.DATABASE_URL, 
+    collection: 'sessions' 
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000000 }
+}));
 
 // ... (Rest of your route logic) ...
 app.use('/', usersRouter);
